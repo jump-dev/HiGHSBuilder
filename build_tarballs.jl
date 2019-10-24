@@ -35,16 +35,10 @@ platforms = [
 ]
 
 # The products that we will ensure are always built
-products(prefix) = [
-    LibraryProduct(prefix, "libhighs", :libhighs)
-]
-
-products = expand_gcc_versions(products)
+products(prefix) = expand_gcc_versions[LibraryProduct(prefix, "libhighs", :libhighs)])
 
 # Dependencies that must be installed before this package can be built
-dependencies = [
-    
-]
+dependencies = []
 
 # Build the tarballs, and possibly a `build.jl` as well.
 build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
