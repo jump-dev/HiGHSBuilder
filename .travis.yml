@@ -1,0 +1,39 @@
+language: julia
+os:
+  - linux
+julia:
+  - 1.0
+notifications:
+  email: false
+git:
+  depth: 99999999
+cache:
+  timeout: 1000
+  directories:
+    - downloads
+env:
+  global:
+    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+    - BINARYBUILDER_AUTOMATIC_APPLE=false
+sudo: required
+
+# Before anything else, get the latest versions of things
+before_script:
+  - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder#master"; Pkg.build()'
+
+script:
+  - julia build_tarballs.jl
+
+
+deploy:
+    provider: releases
+    api_key:
+        # Note; this api_key is only valid for matbesancon/HiGHSBuilder; you need
+        # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+        secure: xHzsyZUCeGU8JtNj2I0LzFo9Cdznc6AOVTP5OZ41kagQkgB8htI7LX+qpHnsUnIV/OHfSSvohE9O3NwNdM24x8W7+bS+JqHzqNjHmv+pW8uCV25upVnNdYvtWy4xJ6diXidrJhZ4/rrhodb86JErqTEQiO4m1/pjd+ON0DcBbP/ddRefOztDYxP4CTAP/vXTP6WrzUsuq90Iak0bXT5HSA5XeLKAfAbqYi2NXeZhrMmIG414sKPSbfu6qocY/xaxsh00EPWomjhgMg9KMhFCn1tex+4w3iB6N+Y4oFiB8WrB992BKWnQdUi39CQS/ymtwD8pjUMS5kSI/kO93sKA3B3M1A2XfAgPyDsNl8Qu8zAwswbp4c1HPLxPHWYX2ghfy4bbCm92wMXbJDyoWfEW87DAmCfK8oOZk+WTnhsgSu1y1N2w27NYKKnCsopTOT3DAMyNf3LlFvSD81oFobNHjIegIun6THXyggVI+flruafnAQxcviogWMHm/0WHhYmYHt0kuVgarEhZQqIA7MuZGbFHzoyb0ToS0S/m99RMH5bdE1/tO6DlzQQxtTHnJTPSqgRd03Ue+rwl89OgtB58+WEePMGeRn5xxmEL9ra6JgWj30JvW8cTOcZ+be9pjDFASpGVK6vg879O7Bloe0K7AioWvnXxaAM7yg6yNgVH4os=
+    file_glob: true
+    file: products/*
+    skip_cleanup: true
+    on:
+        repo: matbesancon/HiGHSBuilder
+        tags: true
