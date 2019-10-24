@@ -35,7 +35,7 @@ platforms = [
 ]
 
 # The products that we will ensure are always built
-products(prefix) = expand_gcc_versions[LibraryProduct(prefix, "libhighs", :libhighs)])
+products(prefix) = expand_gcc_versions([LibraryProduct(prefix, "libhighs", :libhighs)])
 
 # Dependencies that must be installed before this package can be built
 dependencies = []
