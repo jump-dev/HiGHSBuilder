@@ -39,6 +39,8 @@ products(prefix) = [
     LibraryProduct(prefix, "libhighs", :libhighs)
 ]
 
+products = expand_gcc_versions(products)
+
 # Dependencies that must be installed before this package can be built
 dependencies = [
     
