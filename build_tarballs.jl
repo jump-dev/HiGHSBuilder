@@ -28,10 +28,9 @@ exit
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = [
+platforms = expand_gcc_versions([
     Linux(:x86_64, libc=:glibc),
-    FreeBSD(:x86_64),
-]
+])
 
 # The products that we will ensure are always built
 products(prefix) = [LibraryProduct(prefix, "libhighs", :libhighs)]
