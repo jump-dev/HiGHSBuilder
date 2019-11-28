@@ -9,7 +9,6 @@ version = v"0.1.0"
 sources = [
     "https://github.com/ERGO-Code/HiGHS.git" =>
     "989fa8ed33220badc04ca4dc22e14e59be2c4b09",
-
 ]
 
 # Bash recipe for building across all platforms
@@ -23,14 +22,16 @@ cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_TOOLCHAIN_FILE=/opt/$target/$target
 make
 make install
 exit
-
 """
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
 platforms = expand_gcc_versions([
     Linux(:x86_64, libc=:glibc),
+    Windows(:x86_64),
 ])
+
+setdiff!(platforms, [Windows(:x86_64, compiler_abi=CompilerABI(:gcc4)), Windows(:x86_64, compiler_abi=CompilerABI(:gcc7))])
 
 # The products that we will ensure are always built
 products(prefix) = [LibraryProduct(prefix, "libhighs", :libhighs)]
