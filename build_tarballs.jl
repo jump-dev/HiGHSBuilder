@@ -8,7 +8,7 @@ version = v"0.1.0"
 # Collection of sources required to build highs
 sources = [
     "https://github.com/ERGO-Code/HiGHS.git" =>
-    "989fa8ed33220badc04ca4dc22e14e59be2c4b09",
+    "4a11c66aae1a426686bb941be97b5e2f5a897f16",
 ]
 
 # Bash recipe for building across all platforms
