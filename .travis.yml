@@ -17,9 +17,8 @@ env:
     - BINARYBUILDER_AUTOMATIC_APPLE=true
 sudo: required
 
-# Before anything else, get the latest versions of things
 before_script:
-  - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder#master"; Pkg.build()'
+  - julia -e 'using Pkg; pkg"add BinaryProvider"; Pkg.build()'
 
 script:
   - julia build_tarballs.jl
