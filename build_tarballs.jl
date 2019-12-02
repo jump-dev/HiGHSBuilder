@@ -26,7 +26,7 @@ exit
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = expand_gcc_versions([
+platforms = BinaryBuilder.expand_gcc_versions([
     Linux(:x86_64, libc=:glibc),
     Windows(:x86_64),
 ])
