@@ -28,10 +28,9 @@ exit
 # platforms are passed in on the command line
 platforms = BinaryBuilder.expand_gcc_versions([
     Linux(:x86_64, libc=:glibc),
-    Windows(:x86_64),
 ])
 
-setdiff!(platforms, [Windows(:x86_64, compiler_abi=CompilerABI(:gcc4)), Windows(:x86_64, compiler_abi=CompilerABI(:gcc7))])
+# setdiff!(platforms, [Windows(:x86_64, compiler_abi=CompilerABI(:gcc4)), Windows(:x86_64, compiler_abi=CompilerABI(:gcc7))])
 
 # The products that we will ensure are always built
 products(prefix) = [LibraryProduct(prefix, "libhighs", :libhighs)]
