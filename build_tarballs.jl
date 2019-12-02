@@ -3,7 +3,7 @@
 using BinaryBuilder
 
 name = "highs"
-version = v"0.1.0"
+version = v"0.1.1"
 
 # Collection of sources required to build highs
 sources = [
